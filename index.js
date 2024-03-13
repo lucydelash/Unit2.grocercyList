@@ -15,6 +15,11 @@ const cart = [];
 
 function logItemNames() {
   //TODO: use the .forEach() method to log out the name of each item
+  let fruits = [`apple`, `banana`, `orange`, `broccoli`, `cucumber`, `milk`, `cheddar cheese`, `sourdough loaf`];
+
+  fruits.forEach(function(item) {
+    console.log(item);
+  });
 }
 
 /**
@@ -23,6 +28,22 @@ function logItemNames() {
  */
 function findItemById(id) {
   // TODO: Use the .find() method to return the item who's id matches the passed in id
+  let items = [
+    { id: 1, name: 'apple' },
+    { id: 2, name: 'banana' },
+    { id: 3, name: 'orange' },
+    { id: 4, name: 'broccoli' },
+    { id: 5, name: 'cucumber' },
+    { id: 6, name: 'milk' },
+    { id: 7, name: 'cheddar cheese' },
+    { id: 8, name: 'sourdough loaf' }
+];
+
+function findItemById(id) {
+    return items.find(item => item.id === id);
+}
+
+console.log(findItemById);
 }
 
 /**
@@ -31,7 +52,17 @@ function findItemById(id) {
 function capitalizeNames() {
   // TODO:  Use the .map() and possibly .slice() methods and return a new items array with the item names capitalized
   // DO NOT MUTATE THE ORIGINAL ARRAY IN YOU LOGIC
+  return items.map(item => {
+    return {
+        id: item.id,
+        name: item.name.charAt(0).toUpperCase() + item.name.slice(1)
+    };
+  });
 }
+
+let capitalizedItems = capitalizeItemNames(items);
+console.log(capitalizedItems);
+
 
 /**
  * @returns {number} the sum of all inventory items
@@ -39,6 +70,12 @@ function capitalizeNames() {
 
 function calculateTotalInventory() {
   // TODO Use the .reduce() method to return the total number of items in inventory
+  function getTotalInventory(items) {
+    return items.reduce((total, item) => total + item.quantity, 0);
+  }
+
+let totalInventory = getTotalInventory(items);
+console.log(totalInventory);
 }
 
 /**
@@ -46,6 +83,12 @@ function calculateTotalInventory() {
  */
 function calculateAllInventoryPrice() {
   // TODO Use the .reduce() method to return the total price of all the items in inventory
+  function getTotalPrice(items) {
+    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
+
+let totalPrice = getTotalPrice(items);
+console.log(totalPrice);
 }
 
 /**
